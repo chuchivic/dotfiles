@@ -12,18 +12,6 @@ set undofile " Maintain undo history between sessions
 set autoindent shiftwidth=2 tabstop=2 noexpandtab
 set hlsearch " highlight search
 
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-
 
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -51,8 +39,12 @@ function! SyncTree()
 endfunction
 
 " Highlight currently open buffer in NERDTree
-"autocmd BufEnter * call SyncTree()
-
+autocmd BufEnter * call SyncTree()
+" Put this in vimrc or a plugin file of your own.
+" After this is configured, :ALEFix will try and fix your JS code with
+" ESLint.
+let g:ale_fixers = { 'javascript': ['eslint'],}
+let g:ale_linters = { 'javascript': ['eslint'], }
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeIndicatorMapCustom = {
 			\ "Modified"  : "✹",
