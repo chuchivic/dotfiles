@@ -11,6 +11,9 @@ set undodir=~/.vim/undodir
 set undofile " Maintain undo history between sessions
 set autoindent shiftwidth=2 tabstop=2 noexpandtab
 set hlsearch " highlight search
+set incsearch " highlight while searching
+set ignorecase " non case-sensitive
+set smartcase " make case sensitive when UPPERCASE
 
 
 let g:ale_lint_delay = 20000
@@ -43,6 +46,10 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
+
+
+
+"ALE 
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with
 " ESLint.
