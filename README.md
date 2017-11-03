@@ -6,7 +6,7 @@ we are the world, we are the people
 - termite (https://github.com/thestinger/termite)
 
 
-#### config way to dotfiles:
+#### dotfiles config way:
 
 https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
