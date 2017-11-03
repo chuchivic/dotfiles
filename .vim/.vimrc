@@ -13,6 +13,9 @@ set autoindent shiftwidth=2 tabstop=2 noexpandtab
 set hlsearch " highlight search
 
 
+let g:ale_lint_delay = 20000
+let g:ale_lint_on_text_changed = 'never'
+
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
