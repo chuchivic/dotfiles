@@ -2,14 +2,17 @@
 
 we are the world, we are the people
 
+#### config way to dotfiles:
+
+https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
 #### add a submodule:
-git submodule add [URL to Git repo]
+config submodule add [URL to Git repo]
 
-git submodule init
+config submodule init
 
 #### pull all changes in the repo including changes in the submodules
-git pull --recurse-submodules
+config pull --recurse-submodules
 
 #### pull all changes for the submodules
-git submodule update --remote
+config submodule update --init --recursive
