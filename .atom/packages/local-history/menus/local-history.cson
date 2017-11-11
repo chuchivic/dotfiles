@@ -1,0 +1,36 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor':
+    [
+      {
+        'label': 'Show history of current file',
+        'command': 'local-history:current-file'
+      },
+      {
+        'label': 'Open difftool: current file / revision file',
+        'command': 'local-history:difftool-current-file'
+      }
+    ]
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Local history'
+      'submenu': [
+        {
+          'label': 'Show current file',
+          'command': 'local-history:current-file'
+        },
+        {
+          'label': 'Open difftool: current file / revision file',
+          'command': 'local-history:difftool-current-file'
+        },
+        {
+          'label': 'Purge expired revisions',
+          'command': 'local-history:purge'
+        }
+      ]
+    ]
+  }
+]

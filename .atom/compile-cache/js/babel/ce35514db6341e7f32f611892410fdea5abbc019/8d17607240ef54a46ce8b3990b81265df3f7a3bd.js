@@ -1,0 +1,10 @@
+
+"use strict";
+
+/**
+ * Check if a character is whitespace.
+ */
+module.exports = function (char /*: string*/) /*: boolean*/{
+  return [" ", "\n", "\t", "\r", "\f"].indexOf(char) !== -1;
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvaXNXaGl0ZXNwYWNlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQSxZQUFZLENBQUM7Ozs7O0FBS2IsTUFBTSxDQUFDLE9BQU8sR0FBRyxVQUFTLElBQUksNEJBQTZCO0FBQ3pELFNBQU8sQ0FBQyxHQUFHLEVBQUUsSUFBSSxFQUFFLElBQUksRUFBRSxJQUFJLEVBQUUsSUFBSSxDQUFDLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDO0NBQzNELENBQUMiLCJmaWxlIjoiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvbGludGVyLXN0eWxlbGludC9ub2RlX21vZHVsZXMvc3R5bGVsaW50L2xpYi91dGlscy9pc1doaXRlc3BhY2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBAZmxvdyAqL1xuXCJ1c2Ugc3RyaWN0XCI7XG5cbi8qKlxuICogQ2hlY2sgaWYgYSBjaGFyYWN0ZXIgaXMgd2hpdGVzcGFjZS5cbiAqL1xubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbihjaGFyIC8qOiBzdHJpbmcqLykgLyo6IGJvb2xlYW4qLyB7XG4gIHJldHVybiBbXCIgXCIsIFwiXFxuXCIsIFwiXFx0XCIsIFwiXFxyXCIsIFwiXFxmXCJdLmluZGV4T2YoY2hhcikgIT09IC0xO1xufTtcbiJdfQ==

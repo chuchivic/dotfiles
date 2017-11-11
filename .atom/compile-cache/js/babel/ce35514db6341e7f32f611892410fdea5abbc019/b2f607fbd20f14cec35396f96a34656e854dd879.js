@@ -1,0 +1,59 @@
+
+"use strict";
+var _ = require("lodash");
+var rules = require("./rules");
+
+// Rule settings can take a number of forms, e.g.
+// a. "rule-name": null
+// b. "rule-name": [null, ...]
+// c. "rule-name": primaryOption
+// d. "rule-name": [primaryOption]
+// e. "rule-name": [primaryOption, secondaryOption]
+// Where primaryOption can be anything: primitive, Object, or Array.
+//
+// This function normalizes all the possibilities into the
+// standard form: [primaryOption, secondaryOption]
+// Except in the cases with null, a & b, in which case
+// null is returned
+module.exports = function (rawSettings, /*: stylelint$configRuleSettings*/
+ruleName, /*: string*/
+// If primaryOptionArray is not provided, we try to get it from the
+primaryOptionArray /*:: ?: boolean*/
+) // rules themselves, which will not work for plugins
+/*: [any, Object] | Array<any | [any, Object]> | null*/{
+  if (rawSettings === null) {
+    return null;
+  }
+
+  if (!Array.isArray(rawSettings)) {
+    return [rawSettings];
+  }
+  // Everything below is an array ...
+
+  if (rawSettings[0] === null) {
+    return null;
+  }
+
+  if (primaryOptionArray === undefined) {
+    var rule = rules[ruleName];
+    primaryOptionArray = _.get(rule, "primaryOptionArray");
+  }
+
+  if (!primaryOptionArray) {
+    return rawSettings;
+  }
+  // Everything below is a rule that CAN have an array for a primary option ...
+  // (they might also have something else, e.g. rule-properties-order can
+  // have the string "alphabetical")
+
+  if (rawSettings.length === 1 && Array.isArray(rawSettings[0])) {
+    return rawSettings;
+  }
+
+  if (rawSettings.length === 2 && !_.isPlainObject(rawSettings[0]) && _.isPlainObject(rawSettings[1])) {
+    return rawSettings;
+  }
+
+  return [rawSettings];
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvbm9ybWFsaXplUnVsZVNldHRpbmdzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQSxZQUFZLENBQUM7QUFDYixJQUFNLENBQUMsR0FBRyxPQUFPLENBQUMsUUFBUSxDQUFDLENBQUM7QUFDNUIsSUFBTSxLQUFLLEdBQUcsT0FBTyxDQUFDLFNBQVMsQ0FBQyxDQUFDOzs7Ozs7Ozs7Ozs7OztBQWNqQyxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQ2YsV0FBVztBQUNYLFFBQVE7O0FBR1Isa0JBQWtCOzt1REFDc0M7QUFDeEQsTUFBSSxXQUFXLEtBQUssSUFBSSxFQUFFO0FBQ3hCLFdBQU8sSUFBSSxDQUFDO0dBQ2I7O0FBRUQsTUFBSSxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEVBQUU7QUFDL0IsV0FBTyxDQUFDLFdBQVcsQ0FBQyxDQUFDO0dBQ3RCOzs7QUFHRCxNQUFJLFdBQVcsQ0FBQyxDQUFDLENBQUMsS0FBSyxJQUFJLEVBQUU7QUFDM0IsV0FBTyxJQUFJLENBQUM7R0FDYjs7QUFFRCxNQUFJLGtCQUFrQixLQUFLLFNBQVMsRUFBRTtBQUNwQyxRQUFNLElBQUksR0FBRyxLQUFLLENBQUMsUUFBUSxDQUFDLENBQUM7QUFDN0Isc0JBQWtCLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxJQUFJLEVBQUUsb0JBQW9CLENBQUMsQ0FBQztHQUN4RDs7QUFFRCxNQUFJLENBQUMsa0JBQWtCLEVBQUU7QUFDdkIsV0FBTyxXQUFXLENBQUM7R0FDcEI7Ozs7O0FBS0QsTUFBSSxXQUFXLENBQUMsTUFBTSxLQUFLLENBQUMsSUFBSSxLQUFLLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxDQUFDLENBQUMsQ0FBQyxFQUFFO0FBQzdELFdBQU8sV0FBVyxDQUFDO0dBQ3BCOztBQUVELE1BQ0UsV0FBVyxDQUFDLE1BQU0sS0FBSyxDQUFDLElBQ3hCLENBQUMsQ0FBQyxDQUFDLGFBQWEsQ0FBQyxXQUFXLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFDaEMsQ0FBQyxDQUFDLGFBQWEsQ0FBQyxXQUFXLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFDL0I7QUFDQSxXQUFPLFdBQVcsQ0FBQztHQUNwQjs7QUFFRCxTQUFPLENBQUMsV0FBVyxDQUFDLENBQUM7Q0FDdEIsQ0FBQyIsImZpbGUiOiIvaG9tZS9qZXN1cy8uYXRvbS9wYWNrYWdlcy9saW50ZXItc3R5bGVsaW50L25vZGVfbW9kdWxlcy9zdHlsZWxpbnQvbGliL25vcm1hbGl6ZVJ1bGVTZXR0aW5ncy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEBmbG93ICovXG5cInVzZSBzdHJpY3RcIjtcbmNvbnN0IF8gPSByZXF1aXJlKFwibG9kYXNoXCIpO1xuY29uc3QgcnVsZXMgPSByZXF1aXJlKFwiLi9ydWxlc1wiKTtcblxuLy8gUnVsZSBzZXR0aW5ncyBjYW4gdGFrZSBhIG51bWJlciBvZiBmb3JtcywgZS5nLlxuLy8gYS4gXCJydWxlLW5hbWVcIjogbnVsbFxuLy8gYi4gXCJydWxlLW5hbWVcIjogW251bGwsIC4uLl1cbi8vIGMuIFwicnVsZS1uYW1lXCI6IHByaW1hcnlPcHRpb25cbi8vIGQuIFwicnVsZS1uYW1lXCI6IFtwcmltYXJ5T3B0aW9uXVxuLy8gZS4gXCJydWxlLW5hbWVcIjogW3ByaW1hcnlPcHRpb24sIHNlY29uZGFyeU9wdGlvbl1cbi8vIFdoZXJlIHByaW1hcnlPcHRpb24gY2FuIGJlIGFueXRoaW5nOiBwcmltaXRpdmUsIE9iamVjdCwgb3IgQXJyYXkuXG4vL1xuLy8gVGhpcyBmdW5jdGlvbiBub3JtYWxpemVzIGFsbCB0aGUgcG9zc2liaWxpdGllcyBpbnRvIHRoZVxuLy8gc3RhbmRhcmQgZm9ybTogW3ByaW1hcnlPcHRpb24sIHNlY29uZGFyeU9wdGlvbl1cbi8vIEV4Y2VwdCBpbiB0aGUgY2FzZXMgd2l0aCBudWxsLCBhICYgYiwgaW4gd2hpY2ggY2FzZVxuLy8gbnVsbCBpcyByZXR1cm5lZFxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbihcbiAgcmF3U2V0dGluZ3MgLyo6IHN0eWxlbGludCRjb25maWdSdWxlU2V0dGluZ3MqLyxcbiAgcnVsZU5hbWUgLyo6IHN0cmluZyovLFxuICAvLyBJZiBwcmltYXJ5T3B0aW9uQXJyYXkgaXMgbm90IHByb3ZpZGVkLCB3ZSB0cnkgdG8gZ2V0IGl0IGZyb20gdGhlXG4gIC8vIHJ1bGVzIHRoZW1zZWx2ZXMsIHdoaWNoIHdpbGwgbm90IHdvcmsgZm9yIHBsdWdpbnNcbiAgcHJpbWFyeU9wdGlvbkFycmF5IC8qOjogPzogYm9vbGVhbiovXG4pIC8qOiBbYW55LCBPYmplY3RdIHwgQXJyYXk8YW55IHwgW2FueSwgT2JqZWN0XT4gfCBudWxsKi8ge1xuICBpZiAocmF3U2V0dGluZ3MgPT09IG51bGwpIHtcbiAgICByZXR1cm4gbnVsbDtcbiAgfVxuXG4gIGlmICghQXJyYXkuaXNBcnJheShyYXdTZXR0aW5ncykpIHtcbiAgICByZXR1cm4gW3Jhd1NldHRpbmdzXTtcbiAgfVxuICAvLyBFdmVyeXRoaW5nIGJlbG93IGlzIGFuIGFycmF5IC4uLlxuXG4gIGlmIChyYXdTZXR0aW5nc1swXSA9PT0gbnVsbCkge1xuICAgIHJldHVybiBudWxsO1xuICB9XG5cbiAgaWYgKHByaW1hcnlPcHRpb25BcnJheSA9PT0gdW5kZWZpbmVkKSB7XG4gICAgY29uc3QgcnVsZSA9IHJ1bGVzW3J1bGVOYW1lXTtcbiAgICBwcmltYXJ5T3B0aW9uQXJyYXkgPSBfLmdldChydWxlLCBcInByaW1hcnlPcHRpb25BcnJheVwiKTtcbiAgfVxuXG4gIGlmICghcHJpbWFyeU9wdGlvbkFycmF5KSB7XG4gICAgcmV0dXJuIHJhd1NldHRpbmdzO1xuICB9XG4gIC8vIEV2ZXJ5dGhpbmcgYmVsb3cgaXMgYSBydWxlIHRoYXQgQ0FOIGhhdmUgYW4gYXJyYXkgZm9yIGEgcHJpbWFyeSBvcHRpb24gLi4uXG4gIC8vICh0aGV5IG1pZ2h0IGFsc28gaGF2ZSBzb21ldGhpbmcgZWxzZSwgZS5nLiBydWxlLXByb3BlcnRpZXMtb3JkZXIgY2FuXG4gIC8vIGhhdmUgdGhlIHN0cmluZyBcImFscGhhYmV0aWNhbFwiKVxuXG4gIGlmIChyYXdTZXR0aW5ncy5sZW5ndGggPT09IDEgJiYgQXJyYXkuaXNBcnJheShyYXdTZXR0aW5nc1swXSkpIHtcbiAgICByZXR1cm4gcmF3U2V0dGluZ3M7XG4gIH1cblxuICBpZiAoXG4gICAgcmF3U2V0dGluZ3MubGVuZ3RoID09PSAyICYmXG4gICAgIV8uaXNQbGFpbk9iamVjdChyYXdTZXR0aW5nc1swXSkgJiZcbiAgICBfLmlzUGxhaW5PYmplY3QocmF3U2V0dGluZ3NbMV0pXG4gICkge1xuICAgIHJldHVybiByYXdTZXR0aW5ncztcbiAgfVxuXG4gIHJldHVybiBbcmF3U2V0dGluZ3NdO1xufTtcbiJdfQ==

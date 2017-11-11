@@ -1,0 +1,15 @@
+
+"use strict";
+
+/**
+ * Check if a statement has an empty block.
+ *
+ * @param {Rule|AtRule} statement - postcss rule or at-rule node
+ * @return {boolean} True if the statement has a block and it is empty
+ */
+module.exports = function (statement /*: postcss$rule | postcss$atRule*/
+) /*: boolean*/{
+  return statement.nodes !== undefined && statement.nodes.length === 0 // has block
+  ; // and is empty
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvaGFzRW1wdHlCbG9jay5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0EsWUFBWSxDQUFDOzs7Ozs7OztBQVFiLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFDZixTQUFTO2VBQ0s7QUFDZCxTQUNFLFNBQVMsQ0FBQyxLQUFLLEtBQUssU0FBUyxJQUFJLFNBQVMsQ0FBQyxLQUFLLENBQUMsTUFBTSxLQUFLLENBQUM7R0FDN0Q7Q0FDSCxDQUFDIiwiZmlsZSI6Ii9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvaGFzRW1wdHlCbG9jay5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEBmbG93ICovXG5cInVzZSBzdHJpY3RcIjtcblxuLyoqXG4gKiBDaGVjayBpZiBhIHN0YXRlbWVudCBoYXMgYW4gZW1wdHkgYmxvY2suXG4gKlxuICogQHBhcmFtIHtSdWxlfEF0UnVsZX0gc3RhdGVtZW50IC0gcG9zdGNzcyBydWxlIG9yIGF0LXJ1bGUgbm9kZVxuICogQHJldHVybiB7Ym9vbGVhbn0gVHJ1ZSBpZiB0aGUgc3RhdGVtZW50IGhhcyBhIGJsb2NrIGFuZCBpdCBpcyBlbXB0eVxuICovXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uKFxuICBzdGF0ZW1lbnQgLyo6IHBvc3Rjc3MkcnVsZSB8IHBvc3Rjc3MkYXRSdWxlKi9cbikgLyo6IGJvb2xlYW4qLyB7XG4gIHJldHVybiAoXG4gICAgc3RhdGVtZW50Lm5vZGVzICE9PSB1bmRlZmluZWQgJiYgc3RhdGVtZW50Lm5vZGVzLmxlbmd0aCA9PT0gMCAvLyBoYXMgYmxvY2tcbiAgKTsgLy8gYW5kIGlzIGVtcHR5XG59O1xuIl19

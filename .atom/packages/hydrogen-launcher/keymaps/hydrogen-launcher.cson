@@ -1,0 +1,18 @@
+# Keybindings require three things to be fully defined: A selector that is
+# matched against the focused element, the keystroke and the command to
+# execute.
+#
+# Below is a basic keybinding which registers on all platforms by applying to
+# the root workspace element.
+
+# For more detailed documentation see
+# https://atom.io/docs/latest/behind-atom-keymaps-in-depth
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
+  'ctrl-alt-k': 'hydrogen-launcher:launch-terminal'
+  'ctrl-alt-j': 'hydrogen-launcher:launch-jupyter-console'
+  'ctrl-alt-shift-j': 'hydrogen-launcher:launch-jupyter-console-in-platformio-terminal'
+
+'.platform-darwin atom-text-editor':
+  'cmd-alt-k': 'hydrogen-launcher:launch-terminal'
+  'cmd-alt-j': 'hydrogen-launcher:launch-jupyter-console'
+  'cmd-alt-shift-j': 'hydrogen-launcher:launch-jupyter-console-in-platformio-terminal'

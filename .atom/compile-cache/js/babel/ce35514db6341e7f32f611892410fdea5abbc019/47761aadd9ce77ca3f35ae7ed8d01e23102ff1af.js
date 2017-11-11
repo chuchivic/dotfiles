@@ -1,0 +1,33 @@
+
+"use strict";
+
+var parse = require("url").parse;
+
+/**
+ * Get unit from value node
+ *
+ * Returns `null` if the unit is not found.
+ */
+module.exports = function (urlString /*: string*/) /*: ?string*/{
+  var url = parse(urlString);
+  var protocol = url.protocol;
+  if (protocol === null || typeof protocol === "undefined") {
+    return null;
+  }
+
+  var scheme = protocol.slice(0, -1); // strip trailing `:`
+
+  // The URL spec does not require a scheme to be followed by `//`, but checking
+  // for it allows this rule to differentiate <scheme>:<hostname> urls from
+  // <hostname>:<port> urls. `data:` scheme urls are an exception to this rule.
+  var slashIndex = protocol.length;
+  var expectedSlashes = urlString.slice(slashIndex, slashIndex + 2);
+  var isSchemeLessUrl = expectedSlashes !== "//" && scheme !== "data";
+
+  if (isSchemeLessUrl) {
+    return null;
+  }
+
+  return scheme;
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvZ2V0U2NoZW1lRnJvbVVybC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0EsWUFBWSxDQUFDOztBQUViLElBQU0sS0FBSyxHQUFHLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxLQUFLLENBQUM7Ozs7Ozs7QUFPbkMsTUFBTSxDQUFDLE9BQU8sR0FBRyxVQUFTLFNBQVMsNEJBQTZCO0FBQzlELE1BQU0sR0FBRyxHQUFHLEtBQUssQ0FBQyxTQUFTLENBQUMsQ0FBQztBQUM3QixNQUFNLFFBQVEsR0FBRyxHQUFHLENBQUMsUUFBUSxDQUFDO0FBQzlCLE1BQUksUUFBUSxLQUFLLElBQUksSUFBSSxPQUFPLFFBQVEsS0FBSyxXQUFXLEVBQUU7QUFDeEQsV0FBTyxJQUFJLENBQUM7R0FDYjs7QUFFRCxNQUFNLE1BQU0sR0FBRyxRQUFRLENBQUMsS0FBSyxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUMsQ0FBQyxDQUFDOzs7OztBQUtyQyxNQUFNLFVBQVUsR0FBRyxRQUFRLENBQUMsTUFBTSxDQUFDO0FBQ25DLE1BQU0sZUFBZSxHQUFHLFNBQVMsQ0FBQyxLQUFLLENBQUMsVUFBVSxFQUFFLFVBQVUsR0FBRyxDQUFDLENBQUMsQ0FBQztBQUNwRSxNQUFNLGVBQWUsR0FBRyxlQUFlLEtBQUssSUFBSSxJQUFJLE1BQU0sS0FBSyxNQUFNLENBQUM7O0FBRXRFLE1BQUksZUFBZSxFQUFFO0FBQ25CLFdBQU8sSUFBSSxDQUFDO0dBQ2I7O0FBRUQsU0FBTyxNQUFNLENBQUM7Q0FDZixDQUFDIiwiZmlsZSI6Ii9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvZ2V0U2NoZW1lRnJvbVVybC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEBmbG93ICovXG5cInVzZSBzdHJpY3RcIjtcblxuY29uc3QgcGFyc2UgPSByZXF1aXJlKFwidXJsXCIpLnBhcnNlO1xuXG4vKipcbiAqIEdldCB1bml0IGZyb20gdmFsdWUgbm9kZVxuICpcbiAqIFJldHVybnMgYG51bGxgIGlmIHRoZSB1bml0IGlzIG5vdCBmb3VuZC5cbiAqL1xubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbih1cmxTdHJpbmcgLyo6IHN0cmluZyovKSAvKjogP3N0cmluZyovIHtcbiAgY29uc3QgdXJsID0gcGFyc2UodXJsU3RyaW5nKTtcbiAgY29uc3QgcHJvdG9jb2wgPSB1cmwucHJvdG9jb2w7XG4gIGlmIChwcm90b2NvbCA9PT0gbnVsbCB8fCB0eXBlb2YgcHJvdG9jb2wgPT09IFwidW5kZWZpbmVkXCIpIHtcbiAgICByZXR1cm4gbnVsbDtcbiAgfVxuXG4gIGNvbnN0IHNjaGVtZSA9IHByb3RvY29sLnNsaWNlKDAsIC0xKTsgLy8gc3RyaXAgdHJhaWxpbmcgYDpgXG5cbiAgLy8gVGhlIFVSTCBzcGVjIGRvZXMgbm90IHJlcXVpcmUgYSBzY2hlbWUgdG8gYmUgZm9sbG93ZWQgYnkgYC8vYCwgYnV0IGNoZWNraW5nXG4gIC8vIGZvciBpdCBhbGxvd3MgdGhpcyBydWxlIHRvIGRpZmZlcmVudGlhdGUgPHNjaGVtZT46PGhvc3RuYW1lPiB1cmxzIGZyb21cbiAgLy8gPGhvc3RuYW1lPjo8cG9ydD4gdXJscy4gYGRhdGE6YCBzY2hlbWUgdXJscyBhcmUgYW4gZXhjZXB0aW9uIHRvIHRoaXMgcnVsZS5cbiAgY29uc3Qgc2xhc2hJbmRleCA9IHByb3RvY29sLmxlbmd0aDtcbiAgY29uc3QgZXhwZWN0ZWRTbGFzaGVzID0gdXJsU3RyaW5nLnNsaWNlKHNsYXNoSW5kZXgsIHNsYXNoSW5kZXggKyAyKTtcbiAgY29uc3QgaXNTY2hlbWVMZXNzVXJsID0gZXhwZWN0ZWRTbGFzaGVzICE9PSBcIi8vXCIgJiYgc2NoZW1lICE9PSBcImRhdGFcIjtcblxuICBpZiAoaXNTY2hlbWVMZXNzVXJsKSB7XG4gICAgcmV0dXJuIG51bGw7XG4gIH1cblxuICByZXR1cm4gc2NoZW1lO1xufTtcbiJdfQ==

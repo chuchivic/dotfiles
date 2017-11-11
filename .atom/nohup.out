@@ -1,0 +1,4 @@
+GLib-GIO-Message: Using the 'memory' GSettings backend.  Your settings will not be saved or shared with other applications.
+Attempting to call a function in a renderer window that has been closed or released.
+Function provided here: worker.js:71:22
+Remote event names: destroyed, crashed

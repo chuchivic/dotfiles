@@ -1,0 +1,61 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+        "spec": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-117518-8460-80ap8b.2w7firudi"
+    ]
+  ],
+  "_from": "../d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+  "_id": "nodejs-snippets@2.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/nodejs-snippets",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+    "spec": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+  "_shasum": "3e8a4d84a877ea4305dbbc1fcf9e65022d54ed61",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-117518-8460-1a77s4k.cnyvavpldi/package.tgz",
+  "_where": "/tmp/apm-install-dir-117518-8460-80ap8b.2w7firudi",
+  "author": {
+    "name": "dead_horse",
+    "email": "dead_horse@qq.com"
+  },
+  "bugs": {
+    "url": "https://github.com/dead-horse/atom-nodejs-snippets/issues"
+  },
+  "dependencies": {},
+  "description": "atom nodejs snippets",
+  "devDependencies": {},
+  "homepage": "https://github.com/dead-horse/atom-nodejs-snippets#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "nodejs-snippets",
+  "optionalDependencies": {},
+  "readme": "atom-nodejs-snippets\n--------\n\nMy atom Node.js snippets.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dead-horse/atom-nodejs-snippets.git"
+  },
+  "version": "2.0.2"
+}

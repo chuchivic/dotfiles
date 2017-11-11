@@ -1,0 +1,14 @@
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _libAtomUpdaterLinuxView = require('../lib/atom-updater-linux-view');
+
+var _libAtomUpdaterLinuxView2 = _interopRequireDefault(_libAtomUpdaterLinuxView);
+
+'use babel';
+
+describe('UpdaterNotifyView', function () {
+  it('has one valid test', function () {
+    expect('life').toBe('easy');
+  });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2F0b20tdXBkYXRlci1saW51eC9zcGVjL2F0b20tdXBkYXRlci1saW51eC12aWV3LXNwZWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7dUNBRThCLGdDQUFnQzs7OztBQUY5RCxXQUFXLENBQUM7O0FBSVosUUFBUSxDQUFDLG1CQUFtQixFQUFFLFlBQU07QUFDbEMsSUFBRSxDQUFDLG9CQUFvQixFQUFFLFlBQU07QUFDN0IsVUFBTSxDQUFDLE1BQU0sQ0FBQyxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQztHQUM3QixDQUFDLENBQUM7Q0FDSixDQUFDLENBQUMiLCJmaWxlIjoiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvYXRvbS11cGRhdGVyLWxpbnV4L3NwZWMvYXRvbS11cGRhdGVyLWxpbnV4LXZpZXctc3BlYy5qcyIsInNvdXJjZXNDb250ZW50IjpbIid1c2UgYmFiZWwnO1xuXG5pbXBvcnQgVXBkYXRlck5vdGlmeVZpZXcgZnJvbSAnLi4vbGliL2F0b20tdXBkYXRlci1saW51eC12aWV3JztcblxuZGVzY3JpYmUoJ1VwZGF0ZXJOb3RpZnlWaWV3JywgKCkgPT4ge1xuICBpdCgnaGFzIG9uZSB2YWxpZCB0ZXN0JywgKCkgPT4ge1xuICAgIGV4cGVjdCgnbGlmZScpLnRvQmUoJ2Vhc3knKTtcbiAgfSk7XG59KTtcbiJdfQ==

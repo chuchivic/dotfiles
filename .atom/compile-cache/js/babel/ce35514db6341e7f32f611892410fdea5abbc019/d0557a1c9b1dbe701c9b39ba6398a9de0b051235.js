@@ -1,0 +1,39 @@
+
+"use strict";
+
+/**
+ * Checks if a string contains a value. The comparison value can be a string or
+ * an array of strings.
+ *
+ * Any strings starting and ending with `/` are ignored. Use the
+ * matchesStringOrRegExp() util to match regexes.
+ */
+module.exports = function containsString(input, /*: string*/
+comparison /*: string | Array<string>*/
+) /*: false | { match: string, pattern: string }*/{
+  if (!Array.isArray(comparison)) {
+    return testAgainstString(input, comparison);
+  }
+
+  for (var comparisonItem of comparison) {
+    var testResult = testAgainstString(input, comparisonItem);
+    if (testResult) {
+      return testResult;
+    }
+  }
+  return false;
+};
+
+function testAgainstString(value, comparison) {
+  if (!comparison) return false;
+  if (comparison[0] === "/" && comparison[comparison.length - 1] === "/") {
+    return false;
+  }
+
+  if (value.indexOf(comparison) >= 0) {
+    return { match: value, pattern: comparison };
+  }
+
+  return false;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvY29udGFpbnNTdHJpbmcuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLFlBQVksQ0FBQTs7Ozs7Ozs7O0FBU1osTUFBTSxDQUFDLE9BQU8sR0FBRyxTQUFTLGNBQWMsQ0FDdEMsS0FBSztBQUNMLFVBQVU7a0RBQ3NDO0FBQ2hELE1BQUksQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLFVBQVUsQ0FBQyxFQUFFO0FBQzlCLFdBQU8saUJBQWlCLENBQUMsS0FBSyxFQUFFLFVBQVUsQ0FBQyxDQUFBO0dBQzVDOztBQUVELE9BQUssSUFBTSxjQUFjLElBQUksVUFBVSxFQUFFO0FBQ3ZDLFFBQU0sVUFBVSxHQUFHLGlCQUFpQixDQUFDLEtBQUssRUFBRSxjQUFjLENBQUMsQ0FBQTtBQUMzRCxRQUFJLFVBQVUsRUFBRTtBQUNkLGFBQU8sVUFBVSxDQUFBO0tBQ2xCO0dBQ0Y7QUFDRCxTQUFPLEtBQUssQ0FBQTtDQUNiLENBQUE7O0FBRUQsU0FBUyxpQkFBaUIsQ0FBQyxLQUFLLEVBQUUsVUFBVSxFQUFFO0FBQzVDLE1BQUksQ0FBQyxVQUFVLEVBQUUsT0FBTyxLQUFLLENBQUE7QUFDN0IsTUFBSSxVQUFVLENBQUMsQ0FBQyxDQUFDLEtBQUssR0FBRyxJQUFJLFVBQVUsQ0FBQyxVQUFVLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQyxLQUFLLEdBQUcsRUFBRTtBQUN0RSxXQUFPLEtBQUssQ0FBQTtHQUNiOztBQUVELE1BQUksS0FBSyxDQUFDLE9BQU8sQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLEVBQUU7QUFDbEMsV0FBTyxFQUFFLEtBQUssRUFBRSxLQUFLLEVBQUUsT0FBTyxFQUFFLFVBQVUsRUFBRSxDQUFBO0dBQzdDOztBQUVELFNBQU8sS0FBSyxDQUFBO0NBQ2IiLCJmaWxlIjoiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvbGludGVyLXN0eWxlbGludC9ub2RlX21vZHVsZXMvc3R5bGVsaW50L2xpYi91dGlscy9jb250YWluc1N0cmluZy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEBmbG93ICovXG5cInVzZSBzdHJpY3RcIlxuXG4vKipcbiAqIENoZWNrcyBpZiBhIHN0cmluZyBjb250YWlucyBhIHZhbHVlLiBUaGUgY29tcGFyaXNvbiB2YWx1ZSBjYW4gYmUgYSBzdHJpbmcgb3JcbiAqIGFuIGFycmF5IG9mIHN0cmluZ3MuXG4gKlxuICogQW55IHN0cmluZ3Mgc3RhcnRpbmcgYW5kIGVuZGluZyB3aXRoIGAvYCBhcmUgaWdub3JlZC4gVXNlIHRoZVxuICogbWF0Y2hlc1N0cmluZ09yUmVnRXhwKCkgdXRpbCB0byBtYXRjaCByZWdleGVzLlxuICovXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uIGNvbnRhaW5zU3RyaW5nKFxuICBpbnB1dC8qOiBzdHJpbmcqLyxcbiAgY29tcGFyaXNvbi8qOiBzdHJpbmcgfCBBcnJheTxzdHJpbmc+Ki9cbikvKjogZmFsc2UgfCB7IG1hdGNoOiBzdHJpbmcsIHBhdHRlcm46IHN0cmluZyB9Ki8ge1xuICBpZiAoIUFycmF5LmlzQXJyYXkoY29tcGFyaXNvbikpIHtcbiAgICByZXR1cm4gdGVzdEFnYWluc3RTdHJpbmcoaW5wdXQsIGNvbXBhcmlzb24pXG4gIH1cblxuICBmb3IgKGNvbnN0IGNvbXBhcmlzb25JdGVtIG9mIGNvbXBhcmlzb24pIHtcbiAgICBjb25zdCB0ZXN0UmVzdWx0ID0gdGVzdEFnYWluc3RTdHJpbmcoaW5wdXQsIGNvbXBhcmlzb25JdGVtKVxuICAgIGlmICh0ZXN0UmVzdWx0KSB7XG4gICAgICByZXR1cm4gdGVzdFJlc3VsdFxuICAgIH1cbiAgfVxuICByZXR1cm4gZmFsc2Vcbn1cblxuZnVuY3Rpb24gdGVzdEFnYWluc3RTdHJpbmcodmFsdWUsIGNvbXBhcmlzb24pIHtcbiAgaWYgKCFjb21wYXJpc29uKSByZXR1cm4gZmFsc2VcbiAgaWYgKGNvbXBhcmlzb25bMF0gPT09IFwiL1wiICYmIGNvbXBhcmlzb25bY29tcGFyaXNvbi5sZW5ndGggLSAxXSA9PT0gXCIvXCIpIHtcbiAgICByZXR1cm4gZmFsc2VcbiAgfVxuXG4gIGlmICh2YWx1ZS5pbmRleE9mKGNvbXBhcmlzb24pID49IDApIHtcbiAgICByZXR1cm4geyBtYXRjaDogdmFsdWUsIHBhdHRlcm46IGNvbXBhcmlzb24gfVxuICB9XG5cbiAgcmV0dXJuIGZhbHNlXG59XG4iXX0=

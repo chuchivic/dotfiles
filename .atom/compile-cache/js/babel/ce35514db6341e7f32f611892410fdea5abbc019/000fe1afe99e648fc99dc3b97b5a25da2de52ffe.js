@@ -1,0 +1,33 @@
+
+"use strict";
+
+var Result = require("postcss/lib/result");
+var normalizeRuleSettings = require("../normalizeRuleSettings");
+var rules = require("../rules");
+
+// Useful for third-party code (e.g. plugins) to run a PostCSS Root
+// against a specific rule and do something with the warnings
+module.exports = function (options, /*: {
+                                    ruleName: string,
+                                    ruleSettings: stylelint$configRuleSettings,
+                                    root: Object,
+                                    }*/
+callback /*: Function*/
+) {
+  if (!options) throw new Error("checkAgainstRule requires an options object with 'ruleName', 'ruleSettings', and 'root' properties");
+  if (!callback) throw new Error("checkAgainstRule requires a callback");
+  if (!options.ruleName) throw new Error("checkAgainstRule requires a 'ruleName' option");
+  if (!rules[options.ruleName]) throw new Error("Rule '" + options.ruleName + "' does not exist");
+  if (!options.ruleSettings) throw new Error("checkAgainstRule requires a 'ruleSettings' option");
+  if (!options.root) throw new Error("checkAgainstRule requires a 'root' option");
+
+  var settings = normalizeRuleSettings(options.ruleSettings, options.ruleName);
+  if (!settings) {
+    return;
+  }
+
+  var tmpPostcssResult = new Result();
+  rules[options.ruleName](settings[0], settings[1])(options.root, tmpPostcssResult);
+  tmpPostcssResult.warnings().forEach(callback);
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvY2hlY2tBZ2FpbnN0UnVsZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0EsWUFBWSxDQUFBOztBQUVaLElBQU0sTUFBTSxHQUFHLE9BQU8sQ0FBQyxvQkFBb0IsQ0FBQyxDQUFBO0FBQzVDLElBQU0scUJBQXFCLEdBQUcsT0FBTyxDQUFDLDBCQUEwQixDQUFDLENBQUE7QUFDakUsSUFBTSxLQUFLLEdBQUcsT0FBTyxDQUFDLFVBQVUsQ0FBQyxDQUFBOzs7O0FBSWpDLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFDZixPQUFPOzs7OztBQUtQLFFBQVE7RUFDUjtBQUNBLE1BQUksQ0FBQyxPQUFPLEVBQUUsTUFBTSxJQUFJLEtBQUssQ0FBQyxvR0FBb0csQ0FBQyxDQUFBO0FBQ25JLE1BQUksQ0FBQyxRQUFRLEVBQUUsTUFBTSxJQUFJLEtBQUssQ0FBQyxzQ0FBc0MsQ0FBQyxDQUFBO0FBQ3RFLE1BQUksQ0FBQyxPQUFPLENBQUMsUUFBUSxFQUFFLE1BQU0sSUFBSSxLQUFLLENBQUMsK0NBQStDLENBQUMsQ0FBQTtBQUN2RixNQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxRQUFRLENBQUMsRUFBRSxNQUFNLElBQUksS0FBSyxZQUFVLE9BQU8sQ0FBQyxRQUFRLHNCQUFtQixDQUFBO0FBQzFGLE1BQUksQ0FBQyxPQUFPLENBQUMsWUFBWSxFQUFFLE1BQU0sSUFBSSxLQUFLLENBQUMsbURBQW1ELENBQUMsQ0FBQTtBQUMvRixNQUFJLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxNQUFNLElBQUksS0FBSyxDQUFDLDJDQUEyQyxDQUFDLENBQUE7O0FBRS9FLE1BQU0sUUFBUSxHQUFHLHFCQUFxQixDQUFDLE9BQU8sQ0FBQyxZQUFZLEVBQUUsT0FBTyxDQUFDLFFBQVEsQ0FBQyxDQUFBO0FBQzlFLE1BQUksQ0FBQyxRQUFRLEVBQUU7QUFBRSxXQUFNO0dBQUU7O0FBRXpCLE1BQU0sZ0JBQWdCLEdBQUcsSUFBSSxNQUFNLEVBQUUsQ0FBQTtBQUNyQyxPQUFLLENBQUMsT0FBTyxDQUFDLFFBQVEsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsRUFBRSxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxPQUFPLENBQUMsSUFBSSxFQUFFLGdCQUFnQixDQUFDLENBQUE7QUFDakYsa0JBQWdCLENBQUMsUUFBUSxFQUFFLENBQUMsT0FBTyxDQUFDLFFBQVEsQ0FBQyxDQUFBO0NBQzlDLENBQUEiLCJmaWxlIjoiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvbGludGVyLXN0eWxlbGludC9ub2RlX21vZHVsZXMvc3R5bGVsaW50L2xpYi91dGlscy9jaGVja0FnYWluc3RSdWxlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogQGZsb3cgKi9cblwidXNlIHN0cmljdFwiXG5cbmNvbnN0IFJlc3VsdCA9IHJlcXVpcmUoXCJwb3N0Y3NzL2xpYi9yZXN1bHRcIilcbmNvbnN0IG5vcm1hbGl6ZVJ1bGVTZXR0aW5ncyA9IHJlcXVpcmUoXCIuLi9ub3JtYWxpemVSdWxlU2V0dGluZ3NcIilcbmNvbnN0IHJ1bGVzID0gcmVxdWlyZShcIi4uL3J1bGVzXCIpXG5cbi8vIFVzZWZ1bCBmb3IgdGhpcmQtcGFydHkgY29kZSAoZS5nLiBwbHVnaW5zKSB0byBydW4gYSBQb3N0Q1NTIFJvb3Rcbi8vIGFnYWluc3QgYSBzcGVjaWZpYyBydWxlIGFuZCBkbyBzb21ldGhpbmcgd2l0aCB0aGUgd2FybmluZ3Ncbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gKFxuICBvcHRpb25zLyo6IHtcbiAgICBydWxlTmFtZTogc3RyaW5nLFxuICAgIHJ1bGVTZXR0aW5nczogc3R5bGVsaW50JGNvbmZpZ1J1bGVTZXR0aW5ncyxcbiAgICByb290OiBPYmplY3QsXG4gIH0qLyxcbiAgY2FsbGJhY2svKjogRnVuY3Rpb24qL1xuKSB7XG4gIGlmICghb3B0aW9ucykgdGhyb3cgbmV3IEVycm9yKFwiY2hlY2tBZ2FpbnN0UnVsZSByZXF1aXJlcyBhbiBvcHRpb25zIG9iamVjdCB3aXRoICdydWxlTmFtZScsICdydWxlU2V0dGluZ3MnLCBhbmQgJ3Jvb3QnIHByb3BlcnRpZXNcIilcbiAgaWYgKCFjYWxsYmFjaykgdGhyb3cgbmV3IEVycm9yKFwiY2hlY2tBZ2FpbnN0UnVsZSByZXF1aXJlcyBhIGNhbGxiYWNrXCIpXG4gIGlmICghb3B0aW9ucy5ydWxlTmFtZSkgdGhyb3cgbmV3IEVycm9yKFwiY2hlY2tBZ2FpbnN0UnVsZSByZXF1aXJlcyBhICdydWxlTmFtZScgb3B0aW9uXCIpXG4gIGlmICghcnVsZXNbb3B0aW9ucy5ydWxlTmFtZV0pIHRocm93IG5ldyBFcnJvcihgUnVsZSAnJHtvcHRpb25zLnJ1bGVOYW1lfScgZG9lcyBub3QgZXhpc3RgKVxuICBpZiAoIW9wdGlvbnMucnVsZVNldHRpbmdzKSB0aHJvdyBuZXcgRXJyb3IoXCJjaGVja0FnYWluc3RSdWxlIHJlcXVpcmVzIGEgJ3J1bGVTZXR0aW5ncycgb3B0aW9uXCIpXG4gIGlmICghb3B0aW9ucy5yb290KSB0aHJvdyBuZXcgRXJyb3IoXCJjaGVja0FnYWluc3RSdWxlIHJlcXVpcmVzIGEgJ3Jvb3QnIG9wdGlvblwiKVxuXG4gIGNvbnN0IHNldHRpbmdzID0gbm9ybWFsaXplUnVsZVNldHRpbmdzKG9wdGlvbnMucnVsZVNldHRpbmdzLCBvcHRpb25zLnJ1bGVOYW1lKVxuICBpZiAoIXNldHRpbmdzKSB7IHJldHVybiB9XG5cbiAgY29uc3QgdG1wUG9zdGNzc1Jlc3VsdCA9IG5ldyBSZXN1bHQoKVxuICBydWxlc1tvcHRpb25zLnJ1bGVOYW1lXShzZXR0aW5nc1swXSwgc2V0dGluZ3NbMV0pKG9wdGlvbnMucm9vdCwgdG1wUG9zdGNzc1Jlc3VsdClcbiAgdG1wUG9zdGNzc1Jlc3VsdC53YXJuaW5ncygpLmZvckVhY2goY2FsbGJhY2spXG59XG4iXX0=

@@ -1,0 +1,22 @@
+
+"use strict";
+var beforeBlockString = require("./beforeBlockString");
+var hasBlock = require("./hasBlock");
+var rawNodeString = require("./rawNodeString");
+
+/**
+ * Return a CSS statement's block -- the string that starts and `{` and ends with `}`.
+ *
+ * If the statement has no block (e.g. `@import url(foo.css);`),
+ * return undefined.
+ *
+ * @param {Rule|AtRule} statement - postcss rule or at-rule node
+ * @return {string|undefined}
+ */
+module.exports = function (statement /*: postcss$rule | postcss$atRule*/) /*: string | boolean*/{
+  if (!hasBlock(statement)) {
+    return false;
+  }
+  return rawNodeString(statement).slice(beforeBlockString(statement).length);
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvYmxvY2tTdHJpbmcuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLFlBQVksQ0FBQTtBQUNaLElBQU0saUJBQWlCLEdBQUcsT0FBTyxDQUFDLHFCQUFxQixDQUFDLENBQUE7QUFDeEQsSUFBTSxRQUFRLEdBQUcsT0FBTyxDQUFDLFlBQVksQ0FBQyxDQUFBO0FBQ3RDLElBQU0sYUFBYSxHQUFHLE9BQU8sQ0FBQyxpQkFBaUIsQ0FBQyxDQUFBOzs7Ozs7Ozs7OztBQVdoRCxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQVUsU0FBUyw0REFBMkQ7QUFDN0YsTUFBSSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsRUFBRTtBQUN4QixXQUFPLEtBQUssQ0FBQTtHQUNiO0FBQ0QsU0FBTyxhQUFhLENBQUMsU0FBUyxDQUFDLENBQUMsS0FBSyxDQUFDLGlCQUFpQixDQUFDLFNBQVMsQ0FBQyxDQUFDLE1BQU0sQ0FBQyxDQUFBO0NBQzNFLENBQUEiLCJmaWxlIjoiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvbGludGVyLXN0eWxlbGludC9ub2RlX21vZHVsZXMvc3R5bGVsaW50L2xpYi91dGlscy9ibG9ja1N0cmluZy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEBmbG93ICovXG5cInVzZSBzdHJpY3RcIlxuY29uc3QgYmVmb3JlQmxvY2tTdHJpbmcgPSByZXF1aXJlKFwiLi9iZWZvcmVCbG9ja1N0cmluZ1wiKVxuY29uc3QgaGFzQmxvY2sgPSByZXF1aXJlKFwiLi9oYXNCbG9ja1wiKVxuY29uc3QgcmF3Tm9kZVN0cmluZyA9IHJlcXVpcmUoXCIuL3Jhd05vZGVTdHJpbmdcIilcblxuLyoqXG4gKiBSZXR1cm4gYSBDU1Mgc3RhdGVtZW50J3MgYmxvY2sgLS0gdGhlIHN0cmluZyB0aGF0IHN0YXJ0cyBhbmQgYHtgIGFuZCBlbmRzIHdpdGggYH1gLlxuICpcbiAqIElmIHRoZSBzdGF0ZW1lbnQgaGFzIG5vIGJsb2NrIChlLmcuIGBAaW1wb3J0IHVybChmb28uY3NzKTtgKSxcbiAqIHJldHVybiB1bmRlZmluZWQuXG4gKlxuICogQHBhcmFtIHtSdWxlfEF0UnVsZX0gc3RhdGVtZW50IC0gcG9zdGNzcyBydWxlIG9yIGF0LXJ1bGUgbm9kZVxuICogQHJldHVybiB7c3RyaW5nfHVuZGVmaW5lZH1cbiAqL1xubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiAoc3RhdGVtZW50Lyo6IHBvc3Rjc3MkcnVsZSB8IHBvc3Rjc3MkYXRSdWxlKi8pLyo6IHN0cmluZyB8IGJvb2xlYW4qLyB7XG4gIGlmICghaGFzQmxvY2soc3RhdGVtZW50KSkge1xuICAgIHJldHVybiBmYWxzZVxuICB9XG4gIHJldHVybiByYXdOb2RlU3RyaW5nKHN0YXRlbWVudCkuc2xpY2UoYmVmb3JlQmxvY2tTdHJpbmcoc3RhdGVtZW50KS5sZW5ndGgpXG59XG4iXX0=

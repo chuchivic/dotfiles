@@ -1,0 +1,14 @@
+
+"use strict";
+
+/**
+ * Check whether a string has postcss-simple-vars interpolation
+ */
+module.exports = function (string /*: string*/) /*: boolean*/{
+  if (/\$\(.+?\)/.test(string)) {
+    return true;
+  }
+
+  return false;
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvaGFzUHN2SW50ZXJwb2xhdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0EsWUFBWSxDQUFDOzs7OztBQUtiLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBUyxNQUFNLDRCQUE2QjtBQUMzRCxNQUFJLFdBQVcsQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUU7QUFDNUIsV0FBTyxJQUFJLENBQUM7R0FDYjs7QUFFRCxTQUFPLEtBQUssQ0FBQztDQUNkLENBQUMiLCJmaWxlIjoiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvbGludGVyLXN0eWxlbGludC9ub2RlX21vZHVsZXMvc3R5bGVsaW50L2xpYi91dGlscy9oYXNQc3ZJbnRlcnBvbGF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogQGZsb3cgKi9cblwidXNlIHN0cmljdFwiO1xuXG4vKipcbiAqIENoZWNrIHdoZXRoZXIgYSBzdHJpbmcgaGFzIHBvc3Rjc3Mtc2ltcGxlLXZhcnMgaW50ZXJwb2xhdGlvblxuICovXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uKHN0cmluZyAvKjogc3RyaW5nKi8pIC8qOiBib29sZWFuKi8ge1xuICBpZiAoL1xcJFxcKC4rP1xcKS8udGVzdChzdHJpbmcpKSB7XG4gICAgcmV0dXJuIHRydWU7XG4gIH1cblxuICByZXR1cm4gZmFsc2U7XG59O1xuIl19

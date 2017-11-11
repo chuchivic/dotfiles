@@ -1,0 +1,31 @@
+(function() {
+  var RebaseListView, git, repo;
+
+  git = require('../../lib/git');
+
+  repo = require('../fixtures').repo;
+
+  RebaseListView = require('../../lib/views/rebase-list-view');
+
+  describe("RebaseListView", function() {
+    beforeEach(function() {
+      this.view = new RebaseListView(repo, "branch1\nbranch2");
+      return spyOn(git, 'cmd').andCallFake(function() {
+        return Promise.reject('blah');
+      });
+    });
+    it("displays a list of branches", function() {
+      return expect(this.view.items.length).toBe(2);
+    });
+    return it("rebases onto the selected branch", function() {
+      this.view.confirmSelection();
+      this.view.rebase('branch1');
+      return expect(git.cmd).toHaveBeenCalledWith(['rebase', 'branch1'], {
+        cwd: repo.getWorkingDirectory()
+      });
+    });
+  });
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiL2hvbWUvamVzdXMvLmF0b20vcGFja2FnZXMvZ2l0LXBsdXMvc3BlYy92aWV3cy9yZWJhc2UtbGlzdC12aWV3LXNwZWMuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUEsTUFBQTs7RUFBQSxHQUFBLEdBQU0sT0FBQSxDQUFRLGVBQVI7O0VBQ0wsT0FBUSxPQUFBLENBQVEsYUFBUjs7RUFDVCxjQUFBLEdBQWlCLE9BQUEsQ0FBUSxrQ0FBUjs7RUFFakIsUUFBQSxDQUFTLGdCQUFULEVBQTJCLFNBQUE7SUFDekIsVUFBQSxDQUFXLFNBQUE7TUFDVCxJQUFDLENBQUEsSUFBRCxHQUFZLElBQUEsY0FBQSxDQUFlLElBQWYsRUFBcUIsa0JBQXJCO2FBQ1osS0FBQSxDQUFNLEdBQU4sRUFBVyxLQUFYLENBQWlCLENBQUMsV0FBbEIsQ0FBOEIsU0FBQTtlQUM1QixPQUFPLENBQUMsTUFBUixDQUFlLE1BQWY7TUFENEIsQ0FBOUI7SUFGUyxDQUFYO0lBS0EsRUFBQSxDQUFHLDZCQUFILEVBQWtDLFNBQUE7YUFDaEMsTUFBQSxDQUFPLElBQUMsQ0FBQSxJQUFJLENBQUMsS0FBSyxDQUFDLE1BQW5CLENBQTBCLENBQUMsSUFBM0IsQ0FBZ0MsQ0FBaEM7SUFEZ0MsQ0FBbEM7V0FHQSxFQUFBLENBQUcsa0NBQUgsRUFBdUMsU0FBQTtNQUNyQyxJQUFDLENBQUEsSUFBSSxDQUFDLGdCQUFOLENBQUE7TUFDQSxJQUFDLENBQUEsSUFBSSxDQUFDLE1BQU4sQ0FBYSxTQUFiO2FBQ0EsTUFBQSxDQUFPLEdBQUcsQ0FBQyxHQUFYLENBQWUsQ0FBQyxvQkFBaEIsQ0FBcUMsQ0FBQyxRQUFELEVBQVcsU0FBWCxDQUFyQyxFQUE0RDtRQUFBLEdBQUEsRUFBSyxJQUFJLENBQUMsbUJBQUwsQ0FBQSxDQUFMO09BQTVEO0lBSHFDLENBQXZDO0VBVHlCLENBQTNCO0FBSkEiLCJzb3VyY2VzQ29udGVudCI6WyJnaXQgPSByZXF1aXJlICcuLi8uLi9saWIvZ2l0J1xue3JlcG99ID0gcmVxdWlyZSAnLi4vZml4dHVyZXMnXG5SZWJhc2VMaXN0VmlldyA9IHJlcXVpcmUgJy4uLy4uL2xpYi92aWV3cy9yZWJhc2UtbGlzdC12aWV3J1xuXG5kZXNjcmliZSBcIlJlYmFzZUxpc3RWaWV3XCIsIC0+XG4gIGJlZm9yZUVhY2ggLT5cbiAgICBAdmlldyA9IG5ldyBSZWJhc2VMaXN0VmlldyhyZXBvLCBcImJyYW5jaDFcXG5icmFuY2gyXCIpXG4gICAgc3B5T24oZ2l0LCAnY21kJykuYW5kQ2FsbEZha2UgLT5cbiAgICAgIFByb21pc2UucmVqZWN0ICdibGFoJ1xuXG4gIGl0IFwiZGlzcGxheXMgYSBsaXN0IG9mIGJyYW5jaGVzXCIsIC0+XG4gICAgZXhwZWN0KEB2aWV3Lml0ZW1zLmxlbmd0aCkudG9CZSAyXG5cbiAgaXQgXCJyZWJhc2VzIG9udG8gdGhlIHNlbGVjdGVkIGJyYW5jaFwiLCAtPlxuICAgIEB2aWV3LmNvbmZpcm1TZWxlY3Rpb24oKVxuICAgIEB2aWV3LnJlYmFzZSAnYnJhbmNoMSdcbiAgICBleHBlY3QoZ2l0LmNtZCkudG9IYXZlQmVlbkNhbGxlZFdpdGggWydyZWJhc2UnLCAnYnJhbmNoMSddLCBjd2Q6IHJlcG8uZ2V0V29ya2luZ0RpcmVjdG9yeSgpXG4iXX0=

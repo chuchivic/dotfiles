@@ -1,0 +1,40 @@
+
+"use strict";
+
+/**
+ * Check whether a type selector is standard
+ *
+ * @param {Node} postcss-selector-parser node (of type tag)
+ * @return {boolean} If `true`, the type selector is standard
+ */
+
+var keywordSets = require("../reference/keywordSets");
+
+module.exports = function (node /*: Object*/) /*: boolean*/{
+  // postcss-selector-parser includes the arguments to nth-child() functions
+  // as "tags", so we need to ignore them ourselves.
+  // The fake-tag's "parent" is actually a selector node, whose parent
+  // should be the :nth-child pseudo node.
+  var _node$parent$parent = node.parent.parent;
+  var parentType = _node$parent$parent.type,
+      parentValue = _node$parent$parent.value;
+
+  if (parentValue) {
+    var normalisedParentName = parentValue.toLowerCase().replace(/:+/, "");
+    if (parentType === "pseudo" && (keywordSets.aNPlusBNotationPseudoClasses.has(normalisedParentName) || keywordSets.linguisticPseudoClasses.has(normalisedParentName))) {
+      return false;
+    }
+  }
+
+  // &-bar is a nesting selector combined with a suffix
+  if (node.prev() && node.prev().type === "nesting") {
+    return false;
+  }
+
+  if (node.value[0] === "%") {
+    return false;
+  }
+
+  return true;
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2plc3VzLy5hdG9tL3BhY2thZ2VzL2xpbnRlci1zdHlsZWxpbnQvbm9kZV9tb2R1bGVzL3N0eWxlbGludC9saWIvdXRpbHMvaXNTdGFuZGFyZFN5bnRheFR5cGVTZWxlY3Rvci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0EsWUFBWSxDQUFBOzs7Ozs7Ozs7QUFTWixJQUFNLFdBQVcsR0FBRyxPQUFPLENBQUMsMEJBQTBCLENBQUMsQ0FBQTs7QUFFdkQsTUFBTSxDQUFDLE9BQU8sR0FBRyxVQUFVLElBQUksNEJBQTJCOzs7OztBQUt4RCxNQUFNLG1CQUFtQixHQUFHLElBQUksQ0FBQyxNQUFNLENBQUMsTUFBTSxDQUFBO0FBQzlDLE1BQU0sVUFBVSxHQUFHLG1CQUFtQixDQUFDLElBQUk7TUFDekMsV0FBVyxHQUFHLG1CQUFtQixDQUFDLEtBQUssQ0FBQTs7QUFFekMsTUFBSSxXQUFXLEVBQUU7QUFDZixRQUFNLG9CQUFvQixHQUFHLFdBQVcsQ0FBQyxXQUFXLEVBQUUsQ0FBQyxPQUFPLENBQUMsSUFBSSxFQUFFLEVBQUUsQ0FBQyxDQUFBO0FBQ3hFLFFBQUksVUFBVSxLQUFLLFFBQVEsS0FBSyxXQUFXLENBQUMsNEJBQTRCLENBQUMsR0FBRyxDQUFDLG9CQUFvQixDQUFDLElBQUksV0FBVyxDQUFDLHVCQUF1QixDQUFDLEdBQUcsQ0FBQyxvQkFBb0IsQ0FBQyxDQUFBLEFBQUMsRUFBRTtBQUNwSyxhQUFPLEtBQUssQ0FBQTtLQUNiO0dBQ0Y7OztBQUdELE1BQUksSUFBSSxDQUFDLElBQUksRUFBRSxJQUFJLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQyxJQUFJLEtBQUssU0FBUyxFQUFFO0FBQ2pELFdBQU8sS0FBSyxDQUFBO0dBQ2I7O0FBRUQsTUFBSSxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxLQUFLLEdBQUcsRUFBRTtBQUN6QixXQUFPLEtBQUssQ0FBQTtHQUNiOztBQUVELFNBQU8sSUFBSSxDQUFBO0NBQ1osQ0FBQSIsImZpbGUiOiIvaG9tZS9qZXN1cy8uYXRvbS9wYWNrYWdlcy9saW50ZXItc3R5bGVsaW50L25vZGVfbW9kdWxlcy9zdHlsZWxpbnQvbGliL3V0aWxzL2lzU3RhbmRhcmRTeW50YXhUeXBlU2VsZWN0b3IuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBAZmxvdyAqL1xuXCJ1c2Ugc3RyaWN0XCJcblxuLyoqXG4gKiBDaGVjayB3aGV0aGVyIGEgdHlwZSBzZWxlY3RvciBpcyBzdGFuZGFyZFxuICpcbiAqIEBwYXJhbSB7Tm9kZX0gcG9zdGNzcy1zZWxlY3Rvci1wYXJzZXIgbm9kZSAob2YgdHlwZSB0YWcpXG4gKiBAcmV0dXJuIHtib29sZWFufSBJZiBgdHJ1ZWAsIHRoZSB0eXBlIHNlbGVjdG9yIGlzIHN0YW5kYXJkXG4gKi9cblxuY29uc3Qga2V5d29yZFNldHMgPSByZXF1aXJlKFwiLi4vcmVmZXJlbmNlL2tleXdvcmRTZXRzXCIpXG5cbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gKG5vZGUvKjogT2JqZWN0Ki8pLyo6IGJvb2xlYW4qLyB7XG4gIC8vIHBvc3Rjc3Mtc2VsZWN0b3ItcGFyc2VyIGluY2x1ZGVzIHRoZSBhcmd1bWVudHMgdG8gbnRoLWNoaWxkKCkgZnVuY3Rpb25zXG4gIC8vIGFzIFwidGFnc1wiLCBzbyB3ZSBuZWVkIHRvIGlnbm9yZSB0aGVtIG91cnNlbHZlcy5cbiAgLy8gVGhlIGZha2UtdGFnJ3MgXCJwYXJlbnRcIiBpcyBhY3R1YWxseSBhIHNlbGVjdG9yIG5vZGUsIHdob3NlIHBhcmVudFxuICAvLyBzaG91bGQgYmUgdGhlIDpudGgtY2hpbGQgcHNldWRvIG5vZGUuXG4gIGNvbnN0IF9ub2RlJHBhcmVudCRwYXJlbnQgPSBub2RlLnBhcmVudC5wYXJlbnRcbiAgY29uc3QgcGFyZW50VHlwZSA9IF9ub2RlJHBhcmVudCRwYXJlbnQudHlwZSxcbiAgICBwYXJlbnRWYWx1ZSA9IF9ub2RlJHBhcmVudCRwYXJlbnQudmFsdWVcblxuICBpZiAocGFyZW50VmFsdWUpIHtcbiAgICBjb25zdCBub3JtYWxpc2VkUGFyZW50TmFtZSA9IHBhcmVudFZhbHVlLnRvTG93ZXJDYXNlKCkucmVwbGFjZSgvOisvLCBcIlwiKVxuICAgIGlmIChwYXJlbnRUeXBlID09PSBcInBzZXVkb1wiICYmIChrZXl3b3JkU2V0cy5hTlBsdXNCTm90YXRpb25Qc2V1ZG9DbGFzc2VzLmhhcyhub3JtYWxpc2VkUGFyZW50TmFtZSkgfHwga2V5d29yZFNldHMubGluZ3Vpc3RpY1BzZXVkb0NsYXNzZXMuaGFzKG5vcm1hbGlzZWRQYXJlbnROYW1lKSkpIHtcbiAgICAgIHJldHVybiBmYWxzZVxuICAgIH1cbiAgfVxuXG4gIC8vICYtYmFyIGlzIGEgbmVzdGluZyBzZWxlY3RvciBjb21iaW5lZCB3aXRoIGEgc3VmZml4XG4gIGlmIChub2RlLnByZXYoKSAmJiBub2RlLnByZXYoKS50eXBlID09PSBcIm5lc3RpbmdcIikge1xuICAgIHJldHVybiBmYWxzZVxuICB9XG5cbiAgaWYgKG5vZGUudmFsdWVbMF0gPT09IFwiJVwiKSB7XG4gICAgcmV0dXJuIGZhbHNlXG4gIH1cblxuICByZXR1cm4gdHJ1ZVxufVxuIl19
