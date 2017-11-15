@@ -20,3 +20,7 @@ config pull --recurse-submodules
 
 #### pull all changes for the submodules
 config submodule update --init --recursive
+
+
+TODO
+Make a script for download fzf and ack, review devicons

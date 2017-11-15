@@ -17,7 +17,7 @@ set ignorecase " non case-sensitive
 set smartcase " make case sensitive when UPPERCASE
 
 " Ack
-nmap <C-s> :Ack<CR>
+nmap <C-s> :Ack!<CR>
 nmap <C-j> :cnext<CR>
 nmap <C-k> :cprev<CR>
 
@@ -32,8 +32,6 @@ nmap - :Buffers<CR>
 nmap <C-i> :bnext<CR>
 nmap <C-o> :bprev<CR>
 
-let g:ale_lint_delay = 20000
-let g:ale_lint_on_text_changed = 'never'
 
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>
@@ -88,6 +86,8 @@ let g:NERDTreeIndicatorMapCustom = {
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with
 " ESLint.
+let g:ale_lint_delay = 20000
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_fixers = { 'javascript': ['eslint'],}
 let g:ale_linters = { 'javascript': ['eslint'], }
 let g:ale_sign_warning = '▲'
@@ -116,6 +116,8 @@ let g:lightline = {
 			\   'linter_errors': 'error'
 			\ },
 			\ }
+
+
 
 function! LightlineLinterWarnings() abort
 	let l:counts = ale#statusline#Count(bufnr(''))
