@@ -10,7 +10,7 @@ colorscheme gruvbox
 filetype plugin indent on
 set undodir=~/.vim/undodir
 set undofile " Maintain undo history between sessions
-set autoindent shiftwidth=2 tabstop=2 noexpandtab
+set shiftwidth=4 tabstop=4 expandtab
 set hlsearch " highlight search
 set incsearch " highlight while searching
 set ignorecase " non case-sensitive
