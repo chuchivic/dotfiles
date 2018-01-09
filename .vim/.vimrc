@@ -16,6 +16,12 @@ set incsearch " highlight while searching
 set ignorecase " non case-sensitive
 set smartcase " make case sensitive when UPPERCASE
 
+noremap n nzz
+noremap N Nzz
+
+" Clear highlight searches when pressing Ctrl-l, that initially redraw screen
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 " Ack
 nmap <C-s> :Ack!<CR>
 nmap <C-j> :cnext<CR>
@@ -29,8 +35,8 @@ nmap <C-p> :Files<CR>
 " move between buffers
 "
 nmap - :Buffers<CR>
-nmap <C-i> :bnext<CR>
-nmap <C-o> :bprev<CR>
+"nmap <C-i> :bnext<CR>
+"nmap <C-o> :bprev<CR>
 
 
 "NERDTree
