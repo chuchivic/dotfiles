@@ -11,6 +11,7 @@ export PATH=/home/jesus/applications/ripgrep:$PATH
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 export PATH=/etc/java/jre1.8.0_144/bin:$PATH 
+export PATH=/opt/anaconda/bin:$PATH 
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
