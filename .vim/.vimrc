@@ -21,6 +21,10 @@ noremap N Nzz
 
 " Clear highlight searches when pressing Ctrl-l, that initially redraw screen
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bprevious<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
 " Ack
 nmap <C-s> :Ack!<CR>

@@ -23,4 +23,4 @@ config submodule update --init --recursive
 
 
 TODO
-Make a script for download fzf and ack, review devicons
+Make a script for download fzf and ack, and neocomplete dependencies review devicons
