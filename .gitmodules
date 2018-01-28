@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/neocomplete.vim"]
 	path = .vim/bundle/neocomplete.vim
 	url = https://github.com/Shougo/neocomplete.vim
+[submodule "/home/jesus/.vim/bundle/vim-solidity"]
+	path = /home/jesus/.vim/bundle/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git
