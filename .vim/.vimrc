@@ -31,6 +31,9 @@ nmap <C-s> :Ack!<CR>
 nmap <C-j> :cnext<CR>
 nmap <C-k> :cprev<CR>
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
 
 " fzf
 set rtp+=~/.fzf
