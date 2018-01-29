@@ -27,8 +27,13 @@ nnoremap ; :
 
 " Clear highlight searches when pressing Ctrl-l, that initially redraw screen
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+
+" move between buffers
+"
+nmap - :Buffers<CR>
 nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
@@ -45,11 +50,6 @@ let g:javascript_conceal_function             = "ƒ"
 set rtp+=~/.fzf
 nmap <C-p> :Files<CR>
 
-" move between buffers
-"
-nmap - :Buffers<CR>
-"nmap <C-i> :bnext<CR>
-"nmap <C-o> :bprev<CR>
 
 
 "NERDTree
