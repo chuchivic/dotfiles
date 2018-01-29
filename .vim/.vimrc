@@ -4,9 +4,12 @@ set background=dark
 set t_Co=256
 set t_ut= " avoid black screen with termite and vim background
 let g:solarized_termcolors=256
-"colorscheme solarized
 "colorscheme wombat256i
+"colorscheme office-dark
+"colorscheme dante
+"colorscheme solarized
 colorscheme gruvbox
+"colorscheme solo_dark
 filetype plugin indent on
 set undodir=~/.vim/undodir
 set undofile " Maintain undo history between sessions
@@ -31,8 +34,8 @@ nmap <C-s> :Ack!<CR>
 nmap <C-j> :cnext<CR>
 nmap <C-k> :cprev<CR>
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+
+let g:javascript_conceal_function             = "ƒ"
 
 
 " fzf
