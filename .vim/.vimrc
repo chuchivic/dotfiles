@@ -119,7 +119,7 @@ highlight link ALEErrorSign Title
 " Lightline
 set laststatus=2
 let g:lightline = {
-			\ 'colorscheme': 'wombat',
+			\ 'colorscheme': 'seoul256',
 			\ 'active': {
 			\   'left': [['mode', 'paste'], ['filename', 'modified']],
 			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
