@@ -1,22 +1,11 @@
 let g:netrw_dirhistmax  =10
-<<<<<<< HEAD
 let g:netrw_dirhist_cnt =9
-=======
-let g:netrw_dirhist_cnt =8
->>>>>>> added conda
 let g:netrw_dirhist_1='/home/jesus/.oh-my-zsh'
 let g:netrw_dirhist_2='/home/jesus/development/playground/nodeschool/learnyounode'
 let g:netrw_dirhist_3='/usr/include/net'
 let g:netrw_dirhist_4='/home/jesus'
-<<<<<<< HEAD
-let g:netrw_dirhist_5='/Users/jesus.suarez.mozo/development/projects/fjord-trends2018'
-let g:netrw_dirhist_6='/Users/jesus.suarez.mozo/development/projects/fjord-trends2018/js'
-let g:netrw_dirhist_7='/Users/jesus.suarez.mozo/development/projects/fjord-trends2018'
-let g:netrw_dirhist_8='/Users/jesus.suarez.mozo/development/projects/fjord-trends2018/inc'
-let g:netrw_dirhist_9='/Users/jesus.suarez.mozo/Documents'
-=======
 let g:netrw_dirhist_5='/home/jesus/development/projects'
 let g:netrw_dirhist_6='/home/jesus/development/projects/merlin-webapp'
 let g:netrw_dirhist_7='/home/jesus/development/projects/merlin-webapp/bin'
 let g:netrw_dirhist_8='/home/jesus/development/projects/merlin-webapp'
->>>>>>> added conda
+let g:netrw_dirhist_9='/home/jesus/development/playground/lottery-contract'
