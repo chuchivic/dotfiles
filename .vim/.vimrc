@@ -18,9 +18,12 @@ set hlsearch " highlight search
 set incsearch " highlight while searching
 set ignorecase " non case-sensitive
 set smartcase " make case sensitive when UPPERCASE
+set backupcopy=yes
 
 noremap n nzz
 noremap N Nzz
+
+nnoremap ; :
 
 " Clear highlight searches when pressing Ctrl-l, that initially redraw screen
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
