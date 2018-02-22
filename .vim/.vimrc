@@ -105,14 +105,22 @@ let g:NERDTreeIndicatorMapCustom = {
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with
 " ESLint.
-let g:ale_lint_delay = 20000
+"let g:ale_lint_delay = 20000
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_fixers = { 'javascript': ['eslint'],}
+"let g:ale_linters = { 'javascript': ['eslint'], }
+"let g:ale_sign_warning = '▲'
+"let g:ale_sign_error = '✗'
+"highlight link ALEWarningSign String
+"highlight link ALEErrorSign Title
+"
+"
+" Disable lint
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_fixers = { 'javascript': ['eslint'],}
-let g:ale_linters = { 'javascript': ['eslint'], }
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
+let g:ale_lint_on_enter = 0
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 
 
