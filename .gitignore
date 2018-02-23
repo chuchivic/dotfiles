@@ -1,6 +1,0 @@
-*
-.cfg
-.vim/undodir/*
-.atom/packages/*
-.atom/storage/*
-.vim/.netrwhist
