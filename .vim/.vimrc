@@ -8,7 +8,7 @@ let g:solarized_termcolors=256
 "colorscheme office-dark
 "colorscheme dante
 "colorscheme solarized
-colorscheme gruvbox
+colorscheme onedark
 "colorscheme solo_dark
 filetype plugin indent on
 set undodir=~/.vim/undodir
@@ -57,6 +57,10 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-m> :NERDTreeFind<CR>
 
 
+"Tagbar
+map <F8> :TagbarToggle<CR>
+
+
 let g:NERDTreeWinPos = 'left'
 "close NERDTree if it's the only window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -85,7 +89,6 @@ endfunction
 " Highlight currently open buffer in NERDTree
 "autocmd BufEnter * call SyncTree()
 
-map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeIndicatorMapCustom = {
 			\ "Modified"  : "✹",
 			\ "Staged"    : "✚",
@@ -107,8 +110,8 @@ let g:NERDTreeIndicatorMapCustom = {
 " ESLint.
 let g:ale_lint_delay = 20000
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_fixers = { 'javascript': ['eslint'],}
-let g:ale_linters = { 'javascript': ['eslint'], }
+"let g:ale_fixers = { 'javascript': ['eslint'],}
+"let g:ale_linters = { 'javascript': ['eslint'], }
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
@@ -119,7 +122,7 @@ highlight link ALEErrorSign Title
 " Lightline
 set laststatus=2
 let g:lightline = {
-			\ 'colorscheme': 'wombat',
+			\ 'colorscheme': 'one',
 			\ 'active': {
 			\   'left': [['mode', 'paste'], ['filename', 'modified']],
 			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
