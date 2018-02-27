@@ -48,7 +48,10 @@ let g:javascript_conceal_function             = "ƒ"
 
 
 " fzf
-set rtp+=/usr/local/opt/fzf
+" Mac
+"set rtp+=/usr/local/opt/fzf
+" Linux
+set rtp+=~/.fzf
 nmap <C-p> :Files<CR>
 
 
