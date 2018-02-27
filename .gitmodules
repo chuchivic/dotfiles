@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule ".vim/pack/extra/opt/onedark.vim"]
+	path = .vim/pack/extra/opt/onedark.vim
+	url = https://github.com/joshdick/onedark.vim.git

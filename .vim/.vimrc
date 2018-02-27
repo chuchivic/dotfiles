@@ -4,6 +4,7 @@ set background=dark
 set t_Co=256
 set t_ut= " avoid black screen with termite and vim background
 let g:solarized_termcolors=256
+packadd! onedark.vim
 "colorscheme wombat256i
 "colorscheme office-dark
 "colorscheme dante
