@@ -1,11 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/jesus/.oh-my-zsh'
-let g:netrw_dirhist_2='/home/jesus/development/playground/nodeschool/learnyounode'
-let g:netrw_dirhist_3='/usr/include/net'
-let g:netrw_dirhist_4='/home/jesus'
-let g:netrw_dirhist_5='/home/jesus/development/projects'
-let g:netrw_dirhist_6='/home/jesus/development/projects/merlin-webapp'
-let g:netrw_dirhist_7='/home/jesus/development/projects/merlin-webapp/bin'
-let g:netrw_dirhist_8='/home/jesus/development/projects/merlin-webapp'
-let g:netrw_dirhist_9='/home/jesus/development/playground/lottery-contract'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/jesus/.vim/bundle/vim-polyglot/ftplugin'
+let g:netrw_dirhist_2='/home/jesus/development/playground/actions/dialogflow-silly-name-maker'
+let g:netrw_dirhist_3='/home/jesus/development/playground/actions'
+let g:netrw_dirhist_4='/home/jesus/development/playground/actions/dialogflow-silly-name-maker-webhook-nodejs'
+let g:netrw_dirhist_5='/home/jesus/development/playground/actions/dialogflow-silly-name-maker-webhook-nodejs/functions'

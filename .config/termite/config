@@ -91,37 +91,70 @@ browser = chromium
 #color14 = #93a1a1
 #color15 = #fdf6e3
 
-# GREEN
+## GREEN
+#
+#[colors]
+#foreground = #00FF00
+##foreground_bold = #ffffff
+##foreground_dim = #888888
+##background = #000000
+##cursor = #1F1F1F
+#
+## if unset, will reverse foreground and background
+#highlight = #2f2f2f
+#
+#color0 = #000000
+#color1 = #AA0000
+#color2 = #00AA00
+#color3 = #AA5500
+#color4 = #0000AA
+#color5 = #AA00AA
+#color6 = #00AAAA
+#color7 = #AAAAAA
+#color8 = #555555
+#color9 = #FF5555
+#color10 = #55FF55
+#color11 = #FFFF55
+#color12 = #5555FF
+#color13 = #FF55FF
+#color14 = #55FFFF
+#color15 = #FFFFFF
+#
+#[hints]
+#foreground = #55FFFF
+
+
+# Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
+# Copyright (c) 2016-present Sven Greb <code@svengreb.de>
+
+# Project:    Nord Termite
+# Repository: https://github.com/arcticicestudio/nord-termite
+# License:    MIT
 
 [colors]
-foreground = #00FF00
-#foreground_bold = #ffffff
-#foreground_dim = #888888
-#background = #000000
-#cursor = #1F1F1F
+foreground = #D8DEE9
+background = #2E3440
+foreground_bold = #D8DEE9
+cursor = #D8DEE9
+cursor_foreground = #2E3440
+highlight = #4C566A
 
-# if unset, will reverse foreground and background
-highlight = #2f2f2f
+color0  = #3B4252
+color1  = #BF616A
+color2  = #A3BE8C
+color3  = #EBCB8B
+color4  = #81A1C1
+color5  = #B48EAD
+color6  = #88C0D0
+color7  = #E5E9F0
+color8  = #4C566A
+color9  = #BF616A
+color10 = #A3BE8C
+color11 = #EBCB8B
+color12 = #81A1C1
+color13 = #B48EAD
+color14 = #8FBCBB
 
-color0 = #000000
-color1 = #AA0000
-color2 = #00AA00
-color3 = #AA5500
-color4 = #0000AA
-color5 = #AA00AA
-color6 = #00AAAA
-color7 = #AAAAAA
-color8 = #555555
-color9 = #FF5555
-color10 = #55FF55
-color11 = #FFFF55
-color12 = #5555FF
-color13 = #FF55FF
-color14 = #55FFFF
-color15 = #FFFFFF
-
-[hints]
-foreground = #55FFFF
 
 #font = Monospace 12
 #foreground = #dcdccc

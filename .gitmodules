@@ -55,3 +55,9 @@
 [submodule ".vim/pack/extra/opt/onedark.vim"]
 	path = .vim/pack/extra/opt/onedark.vim
 	url = https://github.com/joshdick/onedark.vim.git
+[submodule ".vim/bundle/nord-vim"]
+	path = .vim/bundle/nord-vim
+	url = git://github.com/arcticicestudio/nord-vim.git
+[submodule ".vim/bundle/indentLine"]
+	path = .vim/bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine.git

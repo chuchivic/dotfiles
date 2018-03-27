@@ -3,18 +3,18 @@ syntax enable
 set background=dark
 set t_Co=256
 set t_ut= " avoid black screen with termite and vim background
-let g:solarized_termcolors=256
-packadd! onedark.vim
-"colorscheme wombat256i
-"colorscheme office-dark
-"colorscheme dante
-"colorscheme solarized
-colorscheme onedark
-"colorscheme solo_dark
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"colorscheme gruvbox
+"colorscheme tender
+"colorscheme iceberg
+colorscheme nord
+set termguicolors
+"set notermguicolors
 filetype plugin indent on
 set undodir=~/.vim/undodir
 set undofile " Maintain undo history between sessions
-set shiftwidth=4 tabstop=4 expandtab
+set shiftwidth=2 tabstop=2 expandtab
 set hlsearch " highlight search
 set incsearch " highlight while searching
 set ignorecase " non case-sensitive
@@ -42,9 +42,13 @@ nnoremap <silent> ]B :blast<CR>
 nmap <C-s> :Ack!<CR>
 nmap <C-j> :cnext<CR>
 nmap <C-k> :cprev<CR>
+" the silver searcher instead ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 
-let g:javascript_conceal_function             = "ƒ"
+"let g:javascript_conceal_function             = "ƒ"
 
 
 " fzf
@@ -137,7 +141,7 @@ highlight link ALEErrorSign Title
 " Lightline
 set laststatus=2
 let g:lightline = {
-			\ 'colorscheme': 'one',
+			\ 'colorscheme': 'nord',
 			\ 'active': {
 			\   'left': [['mode', 'paste'], ['filename', 'modified']],
 			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
