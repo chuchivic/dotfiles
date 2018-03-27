@@ -104,8 +104,7 @@ stty -ixon
 export GPG_TTY=$(tty)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+unalias grv
 
-alias axpo-routes_db="sudo route add 192.168.206.241 10.0.0.253 && sudo route add -net 192.168.206.242/32 10.0.0.253"
-alias axpo-routes_crm="sudo route add -net 192.168.206.110/32 10.0.0.253"
-alias axpo-routes_ssh="sudo route add -net 192.168.206.224/32 10.0.0.253"
-alias axpo-routes_all="axpo-routes_db && axpo-routes_crm && axpo-routes_ssh"
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"

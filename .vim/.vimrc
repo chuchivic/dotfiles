@@ -4,17 +4,17 @@ set background=dark
 set t_Co=256
 set t_ut= " avoid black screen with termite and vim background
 let g:solarized_termcolors=256
-packadd! onedark.vim
+"packadd! onedark.vim
 "colorscheme wombat256i
 "colorscheme office-dark
 "colorscheme dante
 "colorscheme solarized
-colorscheme onedark
+colorscheme gruvbox 
 "colorscheme solo_dark
 filetype plugin indent on
 set undodir=~/.vim/undodir
 set undofile " Maintain undo history between sessions
-set shiftwidth=4 tabstop=4 expandtab
+set shiftwidth=2 tabstop=2 expandtab
 set hlsearch " highlight search
 set incsearch " highlight while searching
 set ignorecase " non case-sensitive
@@ -134,7 +134,7 @@ highlight link ALEErrorSign Title
 " Lightline
 set laststatus=2
 let g:lightline = {
-			\ 'colorscheme': 'one',
+			\ 'colorscheme': 'gruvbox',
 			\ 'active': {
 			\   'left': [['mode', 'paste'], ['filename', 'modified']],
 			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
