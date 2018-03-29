@@ -1,7 +1,7 @@
 call pathogen#infect()
 syntax enable
 set background=dark
-set t_Co=256
+"set t_Co=256
 set t_ut= " avoid black screen with termite and vim background
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -20,6 +20,7 @@ set incsearch " highlight while searching
 set ignorecase " non case-sensitive
 set smartcase " make case sensitive when UPPERCASE
 set backupcopy=yes
+"set term=screen-256color
 
 noremap n nzz
 noremap N Nzz
