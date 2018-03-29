@@ -5,10 +5,10 @@ set background=dark
 set t_ut= " avoid black screen with termite and vim background
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"colorscheme gruvbox
+colorscheme gruvbox
 "colorscheme tender
 "colorscheme iceberg
-colorscheme nord
+"colorscheme nord
 set termguicolors
 "set notermguicolors
 filetype plugin indent on
@@ -142,7 +142,7 @@ highlight link ALEErrorSign Title
 " Lightline
 set laststatus=2
 let g:lightline = {
-			\ 'colorscheme': 'nord',
+			\ 'colorscheme': 'gruvbox',
 			\ 'active': {
 			\   'left': [['mode', 'paste'], ['filename', 'modified']],
 			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
