@@ -6,6 +6,7 @@ set t_ut= " avoid black screen with termite and vim background
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme gruvbox
+"colorscheme onedark
 "colorscheme tender
 "colorscheme iceberg
 "colorscheme nord
@@ -20,6 +21,7 @@ set incsearch " highlight while searching
 set ignorecase " non case-sensitive
 set smartcase " make case sensitive when UPPERCASE
 set backupcopy=yes
+let g:javascript_plugin_flow = 1
 "set term=screen-256color
 
 noremap n nzz
@@ -41,12 +43,16 @@ nnoremap <silent> ]B :blast<CR>
 
 " Ack
 nmap <C-s> :Ack!<CR>
-nmap <C-j> :cnext<CR>
-nmap <C-k> :cprev<CR>
+
 " the silver searcher instead ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" Moves between quickfixes
+nmap <C-j> :cnext<CR>
+nmap <C-k> :cprev<CR>
+
 
 
 "let g:javascript_conceal_function             = "ƒ"
