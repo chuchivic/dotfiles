@@ -64,3 +64,18 @@
 [submodule ".vim/bundle/asyncomplete.vim"]
 	path = .vim/bundle/asyncomplete.vim
 	url = https://github.com/prabirshrestha/asyncomplete.vim.git
+[submodule ".vim/bundle/async.vim"]
+	path = .vim/bundle/async.vim
+	url = https://github.com/prabirshrestha/async.vim.git
+[submodule ".vim/bundle/asyncomplete-flow.vim"]
+	path = .vim/bundle/asyncomplete-flow.vim
+	url = https://github.com/prabirshrestha/asyncomplete-flow.vim.git
+[submodule ".vim/bundle/deoplete.nvim"]
+	path = .vim/bundle/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim.git
+[submodule ".vim/bundle/vim-hug-neovim-rpc"]
+	path = .vim/bundle/vim-hug-neovim-rpc
+	url = https://github.com/roxma/vim-hug-neovim-rpc.git
+[submodule ".vim/bundle/nvim-yarp"]
+	path = .vim/bundle/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp.git

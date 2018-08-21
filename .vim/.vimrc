@@ -32,7 +32,6 @@ nnoremap ; :
 " Clear highlight searches when pressing Ctrl-l, that initially redraw screen
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-
 " move between buffers
 "
 nmap - :Buffers<CR>
