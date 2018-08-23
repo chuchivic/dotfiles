@@ -1,17 +1,12 @@
 call pathogen#infect()
 syntax enable
 set background=dark
-"set t_Co=256
 set t_ut= " avoid black screen with termite and vim background
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme gruvbox
-"colorscheme onedark
-"colorscheme tender
-"colorscheme iceberg
-"colorscheme nord
+set guifont=Hack\ 11
 set termguicolors
-"set notermguicolors
 filetype plugin indent on
 set undodir=~/.vim/undodir
 set undofile " Maintain undo history between sessions
@@ -21,7 +16,12 @@ set incsearch " highlight while searching
 set ignorecase " non case-sensitive
 set smartcase " make case sensitive when UPPERCASE
 set backupcopy=yes
-let g:javascript_plugin_flow = 1
+set encoding=utf-8
+set pyxversion=3
+
+
+
+
 "set term=screen-256color
 
 noremap n nzz
@@ -122,70 +122,76 @@ let g:NERDTreeIndicatorMapCustom = {
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with
 " ESLint.
-let g:ale_lint_delay = 5000
-"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_delay = 5000
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_fixers = { 'javascript': ['eslint'],}
 let g:ale_linters = { 'javascript': ['eslint'], }
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
-"
-"
-" Disable lint
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-map <leader>at :ALEToggle<CR>
-"let g:ale_fixers = { 'javascript': ['eslint'],}
-"let g:ale_linters = { 'javascript': ['eslint'], }
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
 
+"deoplete
+let g:deoplete#soureces#ternjs#docs = 1
+
+function! StrTrim(txt)
+  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+endfunction
 
 
 " Lightline
 set laststatus=2
 let g:lightline = {
 			\ 'colorscheme': 'gruvbox',
-			\ 'active': {
-			\   'left': [['mode', 'paste'], ['filename', 'modified']],
-			\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-			\ },
-			\ 'component_expand': {
-			\   'linter_warnings': 'LightlineLinterWarnings',
-			\   'linter_errors': 'LightlineLinterErrors',
-			\   'linter_ok': 'LightlineLinterOK'
-			\ },
-			\ 'component_type': {
-			\   'readonly': 'error',
-			\   'linter_warnings': 'warning',
-			\   'linter_errors': 'error'
-			\ },
-			\ }
+      \ 'active': {
+      \   'left': [['mode', 'paste'], ['filename', 'modified']],
+      \   'right': [['lineinfo'], ['fileformat', 'filetype'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+      \ },
+      \ 'component_expand': {
+      \   'linter_warnings': 'LightlineLinterWarnings',
+      \   'linter_errors': 'LightlineLinterErrors',
+      \   'linter_ok': 'LightlineLinterOK'
+      \ },
+      \ 'component_function': {
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat'
+      \ },
+      \ 'component_type': {
+      \   'readonly': 'error',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error'
+      \ },
+      \ }
 
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 
 
 function! LightlineLinterWarnings() abort
-	let l:counts = ale#statusline#Count(bufnr(''))
-	let l:all_errors = l:counts.error + l:counts.style_error
-	let l:all_non_errors = l:counts.total - l:all_errors
-	return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
 endfunction
 
 function! LightlineLinterErrors() abort
-	let l:counts = ale#statusline#Count(bufnr(''))
-	let l:all_errors = l:counts.error + l:counts.style_error
-	let l:all_non_errors = l:counts.total - l:all_errors
-	return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
 endfunction
 
 function! LightlineLinterOK() abort
-	let l:counts = ale#statusline#Count(bufnr(''))
-	let l:all_errors = l:counts.error + l:counts.style_error
-	let l:all_non_errors = l:counts.total - l:all_errors
-	return l:counts.total == 0 ? '✓ ' : ''
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
 endfunction
 
 autocmd User ALELint call s:MaybeUpdateLightline()
@@ -193,9 +199,9 @@ autocmd User ALELint call s:MaybeUpdateLightline()
 " Update and show lightline but only if it's visible
 "(e.g., not in Goyo)
 function! s:MaybeUpdateLightline()
-	if exists('#lightline')
-		call lightline#update()
-	end
+  if exists('#lightline')
+    call lightline#update()
+  end
 endfunction
 
 

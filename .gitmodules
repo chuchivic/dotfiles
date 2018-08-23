@@ -79,3 +79,18 @@
 [submodule ".vim/bundle/nvim-yarp"]
 	path = .vim/bundle/nvim-yarp
 	url = https://github.com/roxma/nvim-yarp.git
+[submodule ".vim/bundle/deoplete-flow"]
+	path = .vim/bundle/deoplete-flow
+	url = https://github.com/steelsojka/deoplete-flow.git
+[submodule ".vim/bundle/vim-devicons"]
+	path = .vim/bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
+[submodule ".vim/bundle/vim-webdevicons"]
+	path = .vim/bundle/vim-webdevicons
+	url = https://github.com/cj/vim-webdevicons.git
+[submodule ".vim/bundle/deoplete-ternjs"]
+	path = .vim/bundle/deoplete-ternjs
+	url = https://github.com/carlitux/deoplete-ternjs.git
+[submodule ".vim/bundle/tern_for_vim"]
+	path = .vim/bundle/tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim.git
