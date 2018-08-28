@@ -94,3 +94,9 @@
 [submodule ".vim/bundle/tern_for_vim"]
 	path = .vim/bundle/tern_for_vim
 	url = https://github.com/ternjs/tern_for_vim.git
+[submodule ".vim/bundle/VimCompletesMe"]
+	path = .vim/bundle/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe.git
+[submodule ".vim/bundle/vim-gutentags"]
+	path = .vim/bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git

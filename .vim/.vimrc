@@ -54,6 +54,7 @@ nmap <C-k> :cprev<CR>
 
 
 
+
 "let g:javascript_conceal_function             = "ƒ"
 
 
@@ -73,6 +74,7 @@ map <C-m> :NERDTreeFind<CR>
 
 "Tagbar
 map <F8> :TagbarToggle<CR>
+
 
 
 let g:NERDTreeWinPos = 'left'
@@ -131,9 +133,18 @@ let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 
-"deoplete
-let g:deoplete#soureces#ternjs#docs = 1
 
+autocmd FileType vim let b:vcm_tab_complete = 'vim'
+
+"deoplete
+"let g:deoplete#sources#ternjs#tern_bin = 'ternjs'
+"let g:deoplete#enable_at_startup = 1
+""let g:deoplete#sources#ternjs#docs = 1
+"let g:deoplete#sources#ternjs#types = 1
+"let g:deoplete#enable_refresh_always = 1
+"let g:deoplete#auto_complete_delay = 1500
+"let g:deoplete#auto_refresh_delay = 300
+"
 function! StrTrim(txt)
   return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 endfunction
