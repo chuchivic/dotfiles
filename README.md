@@ -24,3 +24,5 @@ config submodule update --init --recursive
 
 TODO
 Make a script for download fzf and ack(silver_searcher in future) and Universal Tags(ctags), review devicons, 
+
+https://github.com/haikarainen/light for i3 brightness
