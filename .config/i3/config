@@ -42,7 +42,7 @@ bindsym $mod+Shift+q kill
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 # Rofi
-bindsym $mod+d exec --no-startup-id rofi -show run -width 400 -lines 5 -font "Hack 10" -separator-style "none"
+bindsym $mod+d exec --no-startup-id rofi -show drun -width 400 -lines 5 -font "Hack 10" -separator-style "none"
 
 bindsym $mod+Shift+s exec /home/jesus/.config/i3/scripts/monitor.sh
 

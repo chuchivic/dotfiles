@@ -19,7 +19,8 @@ set backupcopy=yes
 set encoding=utf-8
 set pyxversion=3
 
-
+"Prettyfy json on =G
+au FileType json setlocal equalprg=python\ -m\ json.tool
 
 
 "set term=screen-256color

@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/jesus/.vim/bundle/vim-polyglot/ftplugin'
 let g:netrw_dirhist_2='/home/jesus/development/playground/actions/dialogflow-silly-name-maker'
 let g:netrw_dirhist_3='/home/jesus/development/playground/actions'
 let g:netrw_dirhist_4='/home/jesus/development/playground/actions/dialogflow-silly-name-maker-webhook-nodejs'
 let g:netrw_dirhist_5='/home/jesus/development/playground/actions/dialogflow-silly-name-maker-webhook-nodejs/functions'
 let g:netrw_dirhist_6='/home/jesus/development/projects/snowstorm-bot-main'
+let g:netrw_dirhist_7='/home/jesus/development/clones/node'
