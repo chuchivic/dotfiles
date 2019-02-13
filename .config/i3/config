@@ -47,10 +47,10 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -width 400 -lines 5 -font "H
 bindsym $mod+Shift+s exec /home/jesus/.config/i3/scripts/monitor.sh
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ntilde focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -71,7 +71,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -151,10 +151,10 @@ mode "resize" {
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-  bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym ntilde resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
 # same bindings, but for the arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
@@ -238,14 +238,14 @@ set $Locker i3lock
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
+  bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
 
-    # back to normal: Enter or Escape
+# back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -255,8 +255,4 @@ bindsym $mod+Delete mode "$mode_system"
 #Exec on StartUp
 
 exec rambox
-exec chromium
-
-
-
-
+exec source $HOME/.zshrc 
