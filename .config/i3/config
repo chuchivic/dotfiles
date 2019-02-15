@@ -233,7 +233,6 @@ bindsym XF86AudioMicMute        exec --no-startup-id amixer set Capture toggle
 
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
-
 set $Locker i3lock 
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -252,6 +251,7 @@ mode "$mode_system" {
 
 bindsym $mod+Delete mode "$mode_system"
 
+exec --no-startup-id xss-lock -- ~/.config/i3/scripts/lock.sh
 #Exec on StartUp
 
 exec rambox

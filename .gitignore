@@ -1,5 +1,4 @@
 *
-.cfg
-.vim/undodir
-.vim/.netrwhist
-    
+~/.cfg
+~/.vim/undodir
+~/.vim/.netrwhist
