@@ -18,6 +18,7 @@ set smartcase " make case sensitive when UPPERCASE
 set backupcopy=yes
 set encoding=utf-8
 set pyxversion=3
+map <F7> gg=G<C-o><C-o>
 
 "Prettyfy json on =G
 au FileType json setlocal equalprg=python\ -m\ json.tool
@@ -34,9 +35,9 @@ augroup vimrcEx
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -45,7 +46,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
   autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
   autocmd BufRead,BufNewFile vimrc.local set filetype=vim
-augroup END
+augroup end
 
 
 " Clear highlight searches when pressing Ctrl-l, that initially redraw screen
@@ -61,6 +62,8 @@ nnoremap <silent> ]B :blast<CR>
 
 " Ack
 nmap <C-s> :Ack!<CR>
+
+nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
 
 " Numbers
@@ -79,10 +82,18 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 
   if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    command -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+    "command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
     nnoremap \ :Ag<SPACE>
   endif
 endif
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
 
 " Moves between quickfixes
 nmap <C-j> :cnext<CR>
@@ -162,6 +173,7 @@ set list listchars=tab:»·,trail:·,nbsp:·
 set nojoinspaces
 let g:has_async = v:version >= 800 || has('nvim')
 
+
 " ALE linting events
 augroup ale
   autocmd!
@@ -183,91 +195,212 @@ augroup ale
   endif
 
 
-
-  autocmd FileType vim let b:vcm_tab_complete = 'vim'
-
-  "deoplete
-  "let g:deoplete#sources#ternjs#tern_bin = 'ternjs'
-  "let g:deoplete#enable_at_startup = 1
-  ""let g:deoplete#sources#ternjs#docs = 1
-  "let g:deoplete#sources#ternjs#types = 1
-  "let g:deoplete#enable_refresh_always = 1
-  "let g:deoplete#auto_complete_delay = 1500
-  "let g:deoplete#auto_refresh_delay = 300
-  "
   function! StrTrim(txt)
     return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
   endfunction
+augroup end
 
 
-  " Lightline
-  set laststatus=2
-  let g:lightline = {
-        \ 'colorscheme': 'gruvbox',
-        \ 'active': {
-        \   'left': [['mode', 'paste'], ['filename', 'modified']],
-        \   'right': [['lineinfo'], ['fileformat', 'filetype'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-        \ },
-        \ 'component_expand': {
-        \   'linter_warnings': 'LightlineLinterWarnings',
-        \   'linter_errors': 'LightlineLinterErrors',
-        \   'linter_ok': 'LightlineLinterOK'
-        \ },
-        \ 'component_function': {
-        \   'filetype': 'MyFiletype',
-        \   'fileformat': 'MyFileformat'
-        \ },
-        \ 'component_type': {
-        \   'readonly': 'error',
-        \   'linter_warnings': 'warning',
-        \   'linter_errors': 'error'
-        \ },
-        \ }
 
 
-  function! MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-  endfunction
-
-  function! MyFileformat()
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-  endfunction
-  let g:webdevicons_enable = 1
-  let g:webdevicons_enable_flagship_statusline = 1
-  let g:webdevicons_enable_ctrlp = 1
-  let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-  let g:DevIconsEnableFoldersOpenClose = 1
-  let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
-
-  function! LightlineLinterWarnings() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-  endfunction
-
-  function! LightlineLinterErrors() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-  endfunction
-
-  function! LightlineLinterOK() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? '✓ ' : ''
-  endfunction
-
-  autocmd User ALELint call s:MaybeUpdateLightline()
-
-  " Update and show lightline but only if it's visible
-  "(e.g., not in Goyo)
-  function! s:MaybeUpdateLightline()
-    if exists('#lightline')
-      call lightline#update()
-    end
-  endfunction
+" Lightline
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [['lineinfo'], ['fileformat', 'filetype'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+      \ },
+      \ 'component_expand': {
+      \   'linter_warnings': 'LightlineLinterWarnings',
+      \   'linter_errors': 'LightlineLinterErrors',
+      \   'linter_ok': 'LightlineLinterOK'
+      \ },
+      \ 'component_function': {
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
+      \   'cocstatus': 'cocstatus'
+      \ },
+      \ 'component_type': {
+      \   'readonly': 'error',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error'
+      \ },
+      \ }
 
 
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_flagship_statusline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible
+"(e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+
+""coco config
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? coc#_select_confirm() :
+"      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+
+"let g:coc_snippet_next = '<tab>'
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
